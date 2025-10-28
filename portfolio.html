@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelPerfect - Portfolio Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ8gW4Q81T5w9gO7R0RzX5m4p0+1uFqX/n0rF6J9f3l0sQvK8P1R2W3n7j7g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* FIX 1: The @import rule for fonts MUST be the very first CSS rule in the style block. */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;600&display=swap');
+
+        :root {
+            --color-light-grey: #f7f7f7;
+            --color-dark-text: #3c4a47;
+            --color-light-text: #8f8f8f;
+            --color-accent-maroon: #9e5c6a;
+            --color-primary-maroon: #A14F69;
+            --color-accent-hover: #8a505b;
+            --color-white: #ffffff;
+            --color-greenish-text: #5f746d;
+            --color-footer-link-hover: #9e5c6a;
+
+            --font-heading: 'Cormorant Garamond', 'Times New Roman', serif;
+            --font-body: 'Inter', 'Helvetica Neue', Helvetica, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-light-grey);
+            font-family: var(--font-body);
+            color: var(--color-dark-text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--color-greenish-text);
+            font-weight: 400;
+        }
+
+        .header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--color-light-grey);
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--color-dark-text);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        /* Updated CSS for Font Awesome Icon */
+        .logo-icon {
+            color: var(--color-accent-maroon);
+            font-size: 1.5rem;
+            margin-right: 8px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-light-text);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-dark-text);
+        }
+
+        .nav-links .active a {
+            font-weight: 600;
+            color: var(--color-dark-text);
+        }
+
+        .menu-icon {
+            font-size: 1rem;
+            color: var(--color-dark-text);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        /* The following lines are not needed if using the Font Awesome menu icon, 
+           but I'll keep them in case you prefer the custom look for the menu text. 
+           The HTML was updated to use the Font Awesome bars icon instead of the lines + text combo.
+        .menu-icon-line {
+            width: 20px;
+            height: 2px;
+            background-color: var(--color-dark-text);
+            margin-bottom: 4px;
+        } */
+        
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .header { padding: 15px 20px; }
+            /* Styling for the new Font Awesome menu icon on mobile */
+            .menu-icon {
+                flex-direction: row;
+                gap: 10px;
+                font-size: 1rem;
+                align-items: center;
+            }
+            .menu-icon .fas {
+                font-size: 1.2rem;
+            }
+        }
+        @media (min-width: 901px) {
+            .menu-icon { display: none; }
+        }
+
+        .portfolio-intro {
+            padding: 100px 20px 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .portfolio-intro h1 {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            color: var(--color-greenish-text);
+        }
+
+        .portfolio-intro p {
+            color: var(--color-dark-text);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Updated down-arrow to use Font Awesome for better rendering, using fa-chevron-down as &#8595; can be inconsistent */
+        .down-arrow {
+            margin-top: 30px;
+            font-size: 2rem;
+            color: var(--color-accent-maroon);
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        .portfolio-grid {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 0 40px;
+        }
+
+        .project-card {
+            background-color: var(--color-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image-wrapper {
+            padding-top: 130%;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .project-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.03); 
+        }
+
+        .project-content {
+            padding: 20px 20px 30px;
+        }
+
+        .project-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 5px;
+            color: var(--color-dark-text);
+        }
+
+        .project-content p {
+            font-size: 0.9rem;
+            color: var(--color-light-text);
+            margin: 0;
+        }
+
+        .view-project-link {
+            display: block;
+            margin-top: 15px;
+            color: var(--color-accent-maroon);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .view-project-link:hover {
+            color: var(--color-accent-hover);
+        }
+        
+        .unique-project-section {
+            display: flex;
+            max-width: 1200px;
+            margin: 0px auto 100px; 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); 
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--color-light-grey); 
+        }
+
+        .unique-project-text {
+            flex: 1; 
+            background-color: var(--color-primary-maroon); 
+            padding: 80px 60px;
+            color: var(--color-white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .unique-project-text h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            line-height: 1.3;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: var(--color-white); 
+        }
+
+        .unique-project-text p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.85); 
+        }
+
+        .unique-project-image {
+            flex: 1; 
+            position: relative;
+            background-color: var(--color-white); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px; 
+        }
+
+        .unique-project-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+        
+        .cta-footer-section {
+            padding: 50px 20px 100px;
+            text-align: center;
+        }
+        
+        .cta-footer-section .pre-title {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-dark-text);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .cta-footer-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            line-height: 1.3;
+            margin: 0 0 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--color-greenish-text); 
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-primary-maroon);
+            color: var(--color-white);
+            padding: 15px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 8px 15px rgba(161, 79, 105, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(161, 79, 105, 0.4);
+        }
+
+        .footer {
+            background-color: var(--color-light-grey);
+            padding: 80px 40px 30px;
+            font-size: 0.9rem;
+            color: var(--color-dark-text);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; 
+        }
+
+        .footer-section {
+            width: 25%;
+            min-width: 200px; 
+            margin-bottom: 30px;
+            padding-right: 20px;
+        }
+
+        .footer-section h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--color-greenish-text);
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .footer-section p {
+            color: var(--color-dark-text);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links-list a {
+            color: var(--color-accent-maroon);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--color-accent-hover);
+            text-decoration: underline;
+        }
+        
+        .footer-badges {
+            width: 20%;
+            min-width: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 20px;
+            margin-top: -10px;
+        }
+        
+        .footer-badge-item {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgba(95, 116, 109, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            color: var(--color-greenish-text);
+            text-align: center;
+            border: 2px solid var(--color-greenish-text);
+            padding: 10px;
+        }
+        
+        .footer-badge-security {
+            width: 120px;
+            height: 40px;
+            background-color: rgba(95, 116, 109, 0.1);
+            border: 1px solid rgba(95, 116, 109, 0.3);
+            border-radius: 3px;
+            font-size: 0.7rem;
+            line-height: 1.2;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-legal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--color-light-text);
+        }
+
+        .footer-legal-container a {
+            color: var(--color-light-text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-legal-container a:hover {
+            color: var(--color-accent-maroon);
+        }
+
+        .land-acknowledgement {
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+
+        @media (max-width: 900px) {
+            .portfolio-intro {
+                padding: 60px 20px 40px;
+            }
+            .portfolio-intro h1 {
+                font-size: 2rem;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr; 
+                gap: 40px;
+                padding: 0 20px;
+            }
+
+            .unique-project-section {
+                flex-direction: column; 
+                margin: 0 20px 60px;
+            }
+
+            .unique-project-text {
+                padding: 50px 30px;
+            }
+
+            .unique-project-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .unique-project-image {
+                padding: 30px 20px;
+            }
+            
+            .cta-footer-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .footer {
+                padding: 40px 20px 20px;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .footer-section {
+                width: 100%;
+                min-width: auto;
+                padding-right: 0;
+            }
+            .footer-badges {
+                width: 100%;
+                min-width: auto;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                gap: 30px;
+            }
+            
+
+            .footer-legal-container {
+                margin-top: 20px;
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon fas fa-gem"></span> PIXELPERFECT
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="pixelperfect.html">HOME</a></li>
+                <li><a href="getstarted.html">GET STARTED</a></li>
+                <li class="active"><a href="portfolio.html">PORTFOLIO</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+        <div class="menu-icon">
+            <i class="fas fa-bars"></i>
+            MENU
+        </div>
+    </header>
+
+    <section class="portfolio-intro">
+        <h1>Here are a few of my favourite websites</h1>
+        <p>Okay, maybe more than a few... truth be told, it's difficult to choose. After all that time spent understanding your business, your brand, and your vision for the future, every project becomes quite personal. Here are some projects that have recently been completed.</p>
+        <div class="down-arrow"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+    <section class="portfolio-grid" id="gallery">
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/salvador-global.png" alt="Website screenshot for a U.S. Immigration service">
+            </div>
+            <div class="project-content">
+                <h3>Vortex Global Immigration</h3>
+                <p>Custom WordPress development for legal services.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/nova-painting.png" alt="Website screenshot for a painting and restoration company">
+            </div>
+            <div class="project-content">
+                <h3>BC Premier Restoration</h3>
+                <p>Lead generation site with custom quote forms.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/matthew-bertram.png" alt="Website screenshot for a digital marketing consultant">
+            </div>
+            <div class="project-content">
+                <h3>Matthew Bertram - The Digital Trailblazer</h3>
+                <p>Personal brand site optimized for speaking engagements.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/Kingsett-ESG-scaled.png" alt="Placeholder for a fourth website project">
+            </div>
+            <div class="project-content">
+                <h3>Modern E-Commerce Store</h3>
+                <p>Shopify integration and custom theme design.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/CAPS.jpg" alt="Placeholder for an architectural firm website">
+            </div>
+            <div class="project-content">
+                <h3>Cityscape Architects</h3>
+                <p>Visual-heavy portfolio for a design firm.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/collective-breakthroughs-mike-nagel.jpg" alt="Placeholder for a fitness studio website">
+            </div>
+            <div class="project-content">
+                <h3>Aura Fitness & Wellness</h3>
+                <p>Membership and booking functionality integration.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/trademark-safety-rescue.jpg" alt="Website screenshot for a Global Tech Consulting firm">
+            </div>
+            <div class="project-content">
+                <h3>Global Tech Consulting</h3>
+                <p>Enterprise SaaS platform design.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/alvinlaw.jpg" alt="Website screenshot for a Nonprofit Foundation">
+            </div>
+            <div class="project-content">
+                <h3>Nonprofit Foundation</h3>
+                <p>Donor management and awareness campaign.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/adonai-llc.jpg" alt="Website screenshot for a Local Coffee Shop">
+            </div>
+            <div class="project-content">
+                <h3>Local Coffee Shop</h3>
+                <p>Minimalist branding and online ordering.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/ruth-sirman-scaled.jpg" alt="Website screenshot for a Personal Trainer Site">
+            </div>
+            <div class="project-content">
+                <h3>Personal Trainer Site</h3>
+                <p>Booking system and video integration.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/the-real-estate-assistant-playbook-scaled.jpg" alt="Website screenshot for a Financial Advisory service">
+            </div>
+            <div class="project-content">
+                <h3>Financial Advisory</h3>
+                <p>Secure client portal and information architecture.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="" alt="Website screenshot for an Interior Design Studio">
+            </div>
+            <div class="project-content">
+                <h3>Interior Design Studio</h3>
+                <p>High-resolution image gallery and booking forms.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/edwards-group-scaled.jpg" alt="Website screenshot for a Real Estate Brokerage">
+            </div>
+            <div class="project-content">
+                <h3>Real Estate Brokerage</h3>
+                <p>MLS integration and property search functionality.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/pibworth-professional-solutions.jpg" alt="Website screenshot for a Craft Brewery">
+            </div>
+            <div class="project-content">
+                <h3>Craft Brewery</h3>
+                <p>E-commerce for merchandise and location finder.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/david-beaudoin-canadian-cheese-ambassador-scaled.jpg" alt="Website screenshot for a Music Producer Portfolio">
+            </div>
+            <div class="project-content">
+                <h3>Music Producer Portfolio</h3>
+                <p>Audio samples and professional contact form.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/kanchan-prinsloo-kapri-consulting.jpg" alt="Website screenshot for a Dental Clinic">
+            </div>
+            <div class="project-content">
+                <h3>Dental Clinic Website</h3>
+                <p>Patient forms and services overview.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/canine-foundations.jpg" alt="Website screenshot for an Auto Repair Shop">
+            </div>
+            <div class="project-content">
+                <h3>Auto Repair Shop</h3>
+                <p>Online appointment scheduling and testimonials.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/advanced-racking.jpg" alt="Website screenshot for a Travel Agency">
+            </div>
+            <div class="project-content">
+                <h3>Travel Agency Booking</h3>
+                <p>Custom tour packages and destination guides.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/lindsay-lapaquette.jpg" alt="Website screenshot for a SaaS Startup Landing Page">
+            </div>
+            <div class="project-content">
+                <h3>SaaS Startup Landing</h3>
+                <p>A/B testing optimized funnel design.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/keith-richards-value-trend.jpg" alt="Website screenshot for a Food Blogger">
+            </div>
+            <div class="project-content">
+                <h3>Food Blogger Recipes</h3>
+                <p>Recipe organization and ad placement optimization.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image-wrapper">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/priority-investment.jpg" alt="Website screenshot for an Art Gallery Showcase">
+            </div>
+            <div class="project-content">
+                <h3>Art Gallery Showcase</h3>
+                <p>Virtual exhibition room and artist bios.</p>
+                <a href="#" class="view-project-link">VIEW PROJECT &rarr;</a>
+            </div>
+        </div>
+
+       
+        </div>
+        
+    </section>
+
+    <section class="unique-project-section">
+        <div class="unique-project-text">
+            <h2>Let's talk about your **Next Big Project** </h2>
+            <p>I thrive on creating bespoke, high-performance websites that serve as powerful tools for your business, not just static brochures. If you have a complex vision, a startup idea, or simply demand exceptional quality, I'm ready for the challenge.</p>
+            <p>Don't settle for templates. Let's build a truly unique digital presence that scales with your ambition.</p>
+            <a href="#" class="cta-button">BOOK A FREE CONSULTATION</a>
+        </div>
+        <div class="unique-project-image">
+            <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/designer-support.jpg" alt="Laptop mockup showing a custom website design">
+        </div>
+    </section>
+
+    <section class="cta-footer-section">
+        <p class="pre-title">Ready to Begin?</p>
+        <h2>The perfect website for your business is only a click away.</h2>
+        <a href="#" class="cta-button">GET STARTED NOW</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About PixelPerfect</h4>
+                <p>PixelPerfect is a boutique web design and development studio dedicated to crafting beautiful, fast, and conversion-focused digital experiences.</p>
+                <p><a class="logo" href="#"><span class="logo-icon fas fa-gem"></span> PIXELPERFECT</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>More Info</h4>
+                <ul class="footer-links-list">
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="services.html">Full Services List</a></li>
+                    <li><a href="pricing.html">Pricing & Packages</a></li>
+                    <li><a href="blog.html">The Design Blog</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Get Started</h4>
+                <ul class="footer-links-list">
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="support.html">Client Support Portal</a></li>
+                    <li><a href="quote.html">Request a Custom Quote</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-badges">
+                <div class="footer-badge-item">
+                    <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/logo-monogram-2021-V3-300x300.png" height="120px"; width="230px">
+
+                </div>
+                <div class="footer-badge-security">
+                   <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/eco-friendly.png" height="50px" width="140px"> 
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-legal-container">
+            <p>&copy; 2025 PixelPerfect. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+            <p class="land-acknowledgement">We acknowledge that our virtual presence operates in a global network spanning various sovereign and unceded lands.</p>
+        </div>
+    </footer>
+</body>
+</html>

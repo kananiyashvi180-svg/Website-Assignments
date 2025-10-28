@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bags - Page 2 - GANNI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ganni-black: #000000;
+            --ganni-grey: #666666;
+            --ganni-light-grey: #f0f0f0;
+            --ganni-border-color: #e0e0e0;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--ganni-black);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--ganni-black);
+        }
+
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            border-bottom: 1px solid var(--ganni-border-color);
+            /* Removed position: sticky */
+            background-color: #fff;
+            z-index: 1000;
+        }
+
+        .top-nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        .top-nav-list a {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: var(--ganni-light-grey);
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: var(--ganni-grey);
+        }
+
+        .search-bar i {
+            margin-right: 8px;
+            color: var(--ganni-black);
+        }
+
+        .header-icons i {
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        /* ------------------- Page Info & Nav ------------------- */
+        .breadcrumbs {
+            padding: 15px 40px;
+            background-color: #fff;
+            font-size: 13px;
+            color: var(--ganni-grey);
+            border-bottom: 1px solid var(--ganni-border-color);
+        }
+
+        .breadcrumbs a {
+            color: var(--ganni-grey);
+        }
+
+        .page-title {
+            padding: 40px 40px 20px;
+        }
+
+        .page-title h1 {
+            font-size: 38px;
+            font-weight: 700;
+            margin: 0 0 10px;
+        }
+
+        .page-title p {
+            max-width: 600px;
+            font-size: 15px;
+            color: var(--ganni-grey);
+            margin: 0;
+        }
+
+        .page-title .more-link {
+            color: var(--ganni-black);
+            font-weight: 500;
+            text-decoration: underline;
+        }
+
+        .category-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--ganni-border-color);
+            background-color: #fff;
+            /* Removed position: sticky */
+        }
+
+        .category-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        .category-list a {
+            font-size: 14px;
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .category-list a.active {
+            font-weight: 700;
+        }
+
+        .category-list a.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background-color: var(--ganni-black);
+        }
+
+        .filter-sort {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .filter-sort span {
+            font-size: 14px;
+            color: var(--ganni-grey);
+        }
+
+        .filter-sort-btn {
+            background-color: var(--ganni-black);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .bag-subcategories {
+            display: flex;
+            padding: 20px 40px;
+            gap: 30px;
+            border-bottom: 1px solid var(--ganni-border-color);
+        }
+
+        .bag-subcategory-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 90px;
+        }
+
+        .bag-subcategory-item img {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--ganni-border-color);
+            margin-bottom: 8px;
+            background-color: var(--ganni-light-grey);
+            padding: 10px;
+        }
+
+        .bag-subcategory-item span {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ganni-black);
+        }
+
+        .secondary-category-filter {
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--ganni-border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            /* Removed position: sticky */
+        }
+
+        .secondary-category-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        .secondary-category-list a {
+            font-size: 14px;
+            font-weight: 500;
+            padding: 5px 0;
+            color: var(--ganni-grey);
+            position: relative;
+        }
+
+        .secondary-category-list a:hover {
+            color: var(--ganni-black);
+        }
+
+        .secondary-category-list a.active {
+            font-weight: 700;
+            color: var(--ganni-black);
+        }
+
+        .secondary-category-list a.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background-color: var(--ganni-black);
+        }
+
+        /* ------------------- Product Grid Styles ------------------- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .product-card {
+            text-align: left;
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .wishlist-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+            color: var(--ganni-black);
+            transition: background-color 0.3s;
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 500;
+            margin: 0 0 5px;
+            text-transform: uppercase;
+        }
+
+        .product-price {
+            font-size: 15px;
+            color: var(--ganni-grey);
+            margin: 0;
+        }
+
+        .product-color-info,
+        .product-status {
+            font-size: 13px;
+            color: var(--ganni-grey);
+            margin: 3px 0;
+            line-height: 1.4;
+        }
+
+        .product-status {
+            font-weight: 500;
+            color: var(--ganni-black);
+        }
+
+        /* ------------------- Newsletter Styles ------------------- */
+        .newsletter-signup {
+            background-color: var(--ganni-light-grey);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.3;
+            color: var(--ganni-black);
+            /* Ensure text is black/visible */
+        }
+
+        .email-input-group {
+            position: relative;
+            max-width: 450px;
+            margin: 0 auto 10px;
+            border-bottom: 1px solid var(--ganni-black);
+            display: flex;
+            align-items: center;
+        }
+
+        .email-input-group input {
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            color: var(--ganni-black);
+            outline: none;
+        }
+
+        .email-input-group input::placeholder {
+            color: var(--ganni-grey);
+        }
+
+        .email-submit-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px 0;
+            font-size: 18px;
+            color: var(--ganni-black);
+        }
+
+        .input-hint {
+            font-size: 13px;
+            color: var(--ganni-grey);
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        .privacy-note {
+            font-size: 13px;
+            color: var(--ganni-grey);
+            margin: 0;
+        }
+
+        .privacy-note .privacy-link {
+            color: var(--ganni-black);
+            text-decoration: underline;
+        }
+
+        /* ------------------- Footer Styles ------------------- */
+        .main-footer {
+            background-color: #fff;
+            /* Changed to white */
+            color: var(--ganni-black);
+            /* Changed text color to black */
+            padding: 60px 40px 30px;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .footer-col .col-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--ganni-black);
+            /* Ensure title is black */
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--ganni-grey);
+            /* Links are grey */
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--ganni-black);
+            text-decoration: none;
+        }
+
+        .footer-certified {
+            flex-grow: 1.5;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .bcorp-logo {
+            max-width: 70px;
+            height: auto;
+            margin-bottom: 15px;
+            /* In a real scenario, this would need an SVG filter to change from white to black */
+        }
+
+        .ganni-address {
+            font-size: 13px;
+            color: var(--ganni-grey);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-top: 1px solid var(--ganni-border-color);
+            /* Light border */
+            padding-top: 30px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .locale-selectors {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .locale-select-group {
+            position: relative;
+            color: var(--ganni-black);
+            min-width: 200px;
+        }
+
+        .locale-select-group .select-label {
+            font-size: 13px;
+            color: var(--ganni-black);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .custom-select {
+            position: relative;
+            border-bottom: 1px solid var(--ganni-border-color);
+            /* Light border */
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+
+        .custom-select select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: transparent;
+            border: none;
+            width: 100%;
+            padding: 0 20px 0 0;
+            font-size: 15px;
+            color: var(--ganni-black);
+            /* Select text is black */
+            cursor: pointer;
+            outline: none;
+        }
+
+        .custom-select .select-arrow {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: var(--ganni-black);
+            /* Arrow is black */
+            pointer-events: none;
+        }
+
+        .locale-select-group .select-placeholder {
+            font-size: 11px;
+            color: var(--ganni-grey);
+            margin: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: var(--ganni-black);
+            /* Icons are black */
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--ganni-grey);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--ganni-black);
+            color: #fff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="top-nav">
+            <ul class="top-nav-list">
+                <li><a href="newarrivals.html">New Arrivals</a></li>
+                <li><a href="bags.html">Bags</a></li>
+                <li><a href="#">Ready-to-Wear</a></li>
+                <li><a href="#">Shoes</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li><a href="#">Gifts</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </div>
+            <i class="far fa-heart"></i>
+            <i class="fas fa-user"></i>
+            <i class="fas fa-shopping-bag"></i>
+        </div>
+    </header>
+
+    <div class="breadcrumbs">
+        <a href="ganni.html">Homepage</a> / <a href="bags.html">Bags</a>
+    </div>
+
+    <div class="page-title">
+        <h1>Bags</h1>
+        <p>GANNI takes you from work to party in no time with our timeless selection of... <a href="#"
+                class="more-link">More info</a></p>
+    </div>
+
+    <section class="bag-subcategories">
+        <a href="#" class="bag-subcategory-item">
+            <img src="https://www.ganni.com/on/demandware.static/-/Sites-ganni-storefront-catalogue/default/dwac5fa395/Kat.png"
+                alt="Kat Bag">
+            <span>Kat</span>
+        </a>
+        <a href="#" class="bag-subcategory-item">
+            <img src="https://www.ganni.com/on/demandware.static/-/Sites-ganni-storefront-catalogue/default/dw253018b3/1_new_bou.png"
+                alt="Bou Bag">
+            <span>Bou</span>
+        </a>
+        <a href="#" class="bag-subcategory-item">
+            <img src="https://www.ganni.com/on/demandware.static/-/Sites-ganni-storefront-catalogue/default/dw514fa67b/XXL_hobo.png"
+                alt="Hobo Bag">
+            <span>Hobo</span>
+        </a>
+        <a href="#" class="bag-subcategory-item">
+            <img src="https://www.ganni.com/on/demandware.static/-/Sites-ganni-storefront-catalogue/default/dw86ce236e/1_hobo.png"
+                alt="Mini Hobo Bag">
+            <span>Mini Hobo</span>
+        </a>
+        <a href="#" class="bag-subcategory-item">
+            <img src="https://www.ganni.com/on/demandware.static/-/Sites-ganni-storefront-catalogue/default/dwf026d865/1_Tote.png"
+                alt="Tote Bag">
+            <span>Tote</span>
+        </a>
+        <a href="#" class="bag-subcategory-item">
+            <img src="https://www.ganni.com/on/demandware.static/-/Sites-ganni-storefront-catalogue/default/dwe3fc5847/1_Apo-g.png"
+                alt="Apo-G Bag">
+            <span>Apo-G</span>
+        </a>
+    </section>
+
+    <div class="secondary-category-filter">
+        <ul class="secondary-category-list">
+            <li><a href="#">Mini Bags</a></li>
+            <li><a href="#">Top Handle</a></li>
+            <li><a href="#">Shoulder</a></li>
+            <li><a href="#">Crossbody</a></li>
+            <li><a href="#">Backpacks</a></li>
+        </ul>
+        <div class="filter-sort">
+            <span>92 Products</span>
+            <button class="filter-sort-btn">Filter & sort</button>
+        </div>
+    </div>
+
+    <main class="product-grid">
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw2471469c/images/images/packshots/A7102_979_1.jpg?sh=1000"
+                    alt="Brown Mini Hobo Bag" class="product-image">
+                <button class="wishlist-icon"><i class="far fa-heart"></i></button>
+            </div>
+            <h3 class="product-name">Brown Mini Hobo Bag</h3>
+            <p class="product-price">₹ 37,300.00</p>
+            <p class="product-color-info">6 colour(s)</p>
+            <p class="product-status">New</p>
+        </div>
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw03de16d9/images/images/packshots/A6976_099_1.jpg?sh=1000"
+                    alt="Black Mini Hobo Bag" class="product-image">
+                <button class="wishlist-icon"><i class="far fa-heart"></i></button>
+            </div>
+            <h3 class="product-name">Black Mini Hobo Bag</h3>
+            <p class="product-price">₹ 37,300.00</p>
+            <p class="product-color-info">6 colour(s)</p>
+            <p class="product-status">New</p>
+        </div>
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw541c52c7/images/images/packshots/A6978_686_1.jpg?sh=1000"
+                    alt="Light Grey Mini Hobo Bag" class="product-image">
+                <button class="wishlist-icon"><i class="far fa-heart"></i></button>
+            </div>
+            <h3 class="product-name">Light Grey Mini Hobo Bag</h3>
+            <p class="product-price">₹ 37,300.00</p>
+            <p class="product-color-info">6 colour(s)</p>
+            <p class="product-status">New</p>
+        </div>
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dwd912b2c4/images/images/packshots/A7291_890_1.jpg?sh=1000"
+                    alt="Brown Croco Mini Hobo Bag" class="product-image">
+                <button class="wishlist-icon"><i class="far fa-heart"></i></button>
+            </div>
+            <h3 class="product-name">Brown Croco Mini Hobo Bag</h3>
+            <p class="product-price">₹ 42,800.00</p>
+            <p class="product-color-info">6 colour(s)</p>
+            <p class="product-status">New</p>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw803c2c7d/images/images/packshots/A7081_5903_21K_1.jpg?sh=1000"
+                    alt="Bag Placeholder 5" class="product-image">
+                <button class="wishlist-icon"><i class="far fa-heart"></i></button>
+            </div>
+            <h3 class="product-name">Bag Placeholder 5</h3>
+            <p class="product-price">₹ 35,000.00</p>
+        </div>
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw3b08d6b4/images/images/packshots/A7288_5971_999_1.jpg?sh=1000"
+                    alt="Bag Placeholder 6" class="product-image">
+                <button class="wishlist-icon"><i class="far fa-heart"></i></button>
+            </div>
+            <h3 class="product-name">Bag Placeholder 6</h3>
+            <p class="product-price">₹ 37,300.00</p>
+        </div>
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dwd4a03622/images/images/packshots/A6994_5971_099_1.jpg?sh=1000"
+                    alt="Bag Placeholder 7" class="product-image">
+                <button class="wishlist-icon"><i class="far fa-heart"></i></button>
+            </div>
+            <h3 class="product-name">Bag Placeholder 7</h3>
+            <p class="product-price">₹ 30,000.00</p>
+        </div>
+        <div class="product-card">
+            <div class="product-image-wrapper">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw3e52735e/images/images/packshots/A6998_5971_099_1.jpg?sh=1000"
+                    alt="Bag Placeholder 8" class="product-image">
+                <button class="wishlist-icon"><i class="far fa-heart"></i></button>
+            </div>
+            <h3 class="product-name">Bag Placeholder 8</h3>
+            <p class="product-price">₹ 33,100.00</p>
+        </div>
+    </main>
+
+    <section class="newsletter-signup">
+        <p class="newsletter-title">Subscribe to our newsletter for email updates on new arrivals, and exclusive access
+            to collection launches, special events and collaborations</p>
+        <div class="email-input-group">
+            <input type="email" placeholder="Enter your email address">
+            <button type="submit" class="email-submit-btn"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <p class="input-hint">Please enter your email address, example: user@youremail.com</p>
+        <p class="privacy-note">You can withdraw your consent at any time. Read about how we process your personal data
+            in our <a href="#" class="privacy-link">Privacy Policy</a>.</p>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-columns">
+            <div class="footer-col">
+                <h4 class="col-title">Help & Information</h4>
+                <ul>
+                    <li><a href="#">Delivery</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="col-title">Terms & Conditions</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Cookies Settings</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="col-title">Responsibility</h4>
+                <ul>
+                    <li><a href="#">2024 Responsibility Report</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="col-title">GANNI Shows</h4>
+                <ul>
+                    <li><a href="#">SS26 Presentaion</a></li>
+                    <li><a href="#">Collabs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-certified">
+                <h4 class="col-title">Certified</h4>
+                <img src="https://www.ganni.com/on/demandware.static/-/Library-Sites-ganni-shared/default/dw9d7009b8/redesign/B-Corp-Logo-Black-RGB-kopi.svg"
+                    alt="Certified B Corporation" class="bcorp-logo">
+                <p class="ganni-address">GANNI A/S<br>Bremerholm 4, 1069 Copenhagen K<br>CVR-DK: 21664731</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="locale-selectors">
+                <div class="locale-select-group">
+                    <label for="country-currency" class="select-label">Country / Currency</label>
+                    <div class="custom-select">
+                        <select id="country-currency">
+                            <option value="INR">India / ₹ (INR)</option>
+                            <option value="USD">United States / $ (USD)</option>
+                        </select>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                    <p class="select-placeholder">Please select your country</p>
+                </div>
+                <div class="locale-select-group">
+                    <label for="language" class="select-label">Language</label>
+                    <div class="custom-select">
+                        <select id="language">
+                            <option value="English">English</option>
+                            <option value="Danish">Danish</option>
+                        </select>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                    <p class="select-placeholder">Please select your language</p>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+</body>
+
+</html>

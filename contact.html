@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelPerfect Contact & Project Inquiry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-background: #f7f5f4;
+            --color-card-bg: #ffffff;
+            --color-dark-text: #505050;
+            --color-heading: #7b968c;
+            --color-accent: #a14f69;
+            --color-border: #e8e8ee;
+            --color-light-grey: #a0a0a0;
+
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-background);
+            color: var(--color-dark-text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; 
+            justify-content: flex-start; 
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #8a3f56;
+        }
+
+        .header-container {
+            position: sticky; 
+            top: 0;
+            width: 100%;
+            border-bottom: 1px solid var(--color-border);
+            padding: 15px 5%;
+            box-sizing: border-box;
+            background-color: var(--color-card-bg);
+            z-index: 100;
+        }
+
+        .header {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--color-dark-text);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            color: var(--color-accent);
+            font-size: 1.5rem;
+            margin-right: 8px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-dark-text);
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 16px;
+            width: 20px;
+            cursor: pointer;
+        }
+        .menu-icon-line {
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-dark-text);
+        }
+
+
+        .contact-section {
+            display: flex;
+            max-width: 1100px;
+            background-color: var(--color-card-bg);
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            margin-top: 100px; 
+            margin-bottom: 50px;
+        }
+
+        .image-col {
+            flex: 1;
+            padding: 0;
+            min-width: 350px;
+            overflow: hidden;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://pixelperfectdesignstudio.com/wp-content/uploads/Caley-Walsh-1.jpg');
+            background-size: cover;
+            background-position: center top;
+            display: block;
+        }
+
+        .details-col {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-section h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--color-heading);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .contact-info {
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .contact-info .name-label {
+            font-weight: 600;
+            color: var(--color-dark-text);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .contact-info a {
+            color: var(--color-dark-text);
+        }
+        
+        .social-icons {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            margin-right: 15px;
+            color: var(--color-light-grey);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: var(--color-accent);
+        }
+
+        .schedule-text {
+            font-size: 0.95rem;
+            color: var(--color-dark-text);
+            margin-bottom: 30px;
+        }
+
+        .chat-button {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(161, 79, 105, 0.2);
+        }
+
+        .chat-button:hover {
+            background-color: #8a3f56; 
+            transform: translateY(-1px);
+        }
+        
+        .form-section {
+            width: 100%;
+            padding: 80px 5%;
+            box-sizing: border-box;
+            background-color: var(--color-background);
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid var(--color-border);
+        }
+        
+        .form-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2; 
+        }
+        
+        .form-section h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--color-heading);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        
+        .form-intro {
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            color: var(--color-dark-text);
+        }
+        
+        .project-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            text-align: left;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px; 
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1; 
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--color-dark-text);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--color-border);
+            border-radius: 3px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            box-sizing: border-box;
+            color: var(--color-dark-text);
+            background-color: white;
+            transition: border-color 0.2s;
+        }
+        
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+        
+        .form-group select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 35px;
+        }
+        
+        .form-group textarea {
+            min-height: 120px; 
+            resize: vertical;
+        }
+        
+        .form-group .sub-label {
+            font-size: 0.8rem;
+            color: var(--color-light-grey);
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        .submit-button {
+            grid-column: 1 / -1;
+            margin-top: 30px;
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(161, 79, 105, 0.2);
+            width: auto; 
+            min-width: 250px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .submit-button:hover {
+            background-color: #8a3f56;
+            transform: translateY(-1px);
+        }
+        
+        .diagonal-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.2; 
+            z-index: 1;
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 5px,
+                var(--color-light-grey) 5px,
+                var(--color-light-grey) 6px
+            );
+            background-size: 200px 200px;
+            background-position: 70% 0%; 
+            clip-path: polygon(70% 0, 100% 0, 100% 100%, 70% 100%); 
+        }
+
+        .footer-section {
+            width: 100%;
+            padding: 100px 5% 40px 5%;
+            box-sizing: border-box;
+            background-color: var(--color-background);
+            text-align: center;
+        }
+        
+        .footer-top {
+            max-width: 1100px;
+            margin: 0 auto 80px auto;
+        }
+
+        .now-booking {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-dark-text);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .footer-heading {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--color-heading);
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .footer-button {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: white;
+            padding: 14px 40px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .footer-button:hover {
+            background-color: #8a3f56;
+            transform: translateY(-1px);
+        }
+        
+        .footer-columns {
+            max-width: 1100px;
+            margin: 0 auto 50px auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--color-border);
+            text-align: left;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-dark-text);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .footer-col h3.accent-heading {
+            color: var(--color-heading);
+        }
+        
+        .footer-col p {
+            font-size: 0.9rem;
+            color: var(--color-dark-text);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        
+        .footer-logos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+        }
+
+        .logo-circle, .logo-badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--color-heading);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-sizing: border-box;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--color-heading);
+        }
+
+        .logo-badge {
+            background-color: #ededed;
+            color: var(--color-dark-text);
+            width: 100px;
+            height: 35px;
+            border-radius: 3px;
+            font-size: 0.6rem;
+            box-shadow: none;
+            border: 1px solid var(--color-light-grey);
+        }
+        
+        .logo-badge span {
+            font-size: 1rem;
+            margin-right: 5px;
+            color: #4CAF50;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--color-dark-text);
+        }
+
+        .footer-bottom p {
+            margin: 10px 0;
+        }
+
+
+        @media (max-width: 900px) {
+            .contact-section {
+                flex-direction: column;
+                max-width: 90%;
+            }
+
+            .image-col {
+                min-height: 350px;
+                min-width: auto;
+            }
+
+            .details-col {
+                padding: 40px 30px;
+                text-align: center;
+            }
+
+            .contact-section h2 {
+                font-size: 2rem;
+            }
+            
+            .social-icons {
+                margin-top: 20px;
+                text-align: center;
+            }
+            
+            .chat-button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .header {
+                justify-content: space-between; 
+            }
+            
+            .project-form {
+                grid-template-columns: 1fr; 
+            }
+            
+            .form-section h1 {
+                font-size: 2.2rem;
+            }
+            
+            .submit-button {
+                width: 100%;
+            }
+            
+            .diagonal-pattern {
+                opacity: 0.1; 
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); 
+            }
+
+            .footer-columns {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-col {
+                margin-bottom: 30px;
+            }
+
+            .footer-links {
+                padding: 0;
+            }
+
+            .footer-links li {
+                display: inline-block;
+                margin: 0 10px 10px 10px;
+            }
+
+            .footer-columns .footer-col:last-child {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (min-width: 901px) {
+            .menu-icon {
+                display: none; 
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <header class="header">
+            <div class="nav-links">
+                <li><a href="pixelperfect.html">HOME</a></li>
+                <li><a href="getstarted.html">GET STARTED</a></li>
+                <li><a href="portfolio.html">PORTFOLIO</a></li>
+                <li><a href="contact.html" style="font-weight: 600; color: var(--color-accent);">CONTACT</a></li>
+            </div>
+            <div class="logo">
+                <span class="logo-icon">❖</span> PIXELPERFECT
+            </div>
+            <div class="menu-icon">
+                <div class="menu-icon-line"></div>
+                <div class="menu-icon-line"></div>
+                <div class="menu-icon-line"></div>
+            </div>
+        </header>
+    </div>
+
+    <section class="contact-section">
+        <div class="image-col">
+            <div class="profile-image"></div>
+        </div>
+        <div class="details-col">
+            <h2>Get in touch</h2>
+
+            <div class="contact-info">
+                <p class="name-label">Caley Walsh</p>
+                <p>PixelPerfect Design Studio</p>
+                <p>Barrie, Ontario, Canada</p>
+                <p>&nbsp;</p>
+                <p><a href="mailto:hello@pixelperfectdesignstudio.com">hello [at] pixelperfectdesignstudio.com</a></p>
+                <p><a href="tel:7057702033">705-770-2033</a></p>
+            </div>
+            
+            <div class="social-icons">
+                <a href="#">f</a> 
+                <a href="#"></a> 
+                <a href="#">℗</a> 
+                <a href="#">in</a>
+            </div>
+
+            <p class="schedule-text">
+                Have something you'd like to discuss regarding your project? 
+                Schedule a call with me at a time that is convenient for both of us. 
+                Click below to get started.
+            </p>
+
+            <button class="chat-button">LET'S CHAT</button>
+        </div>
+    </section>
+    
+    <section class="form-section">
+        <div class="diagonal-pattern"></div>
+        
+        <div class="form-content">
+            <h1>Get a website that's gorgeous and helps you reach your business goals.</h1>
+            <p class="form-intro">
+                Are you ready to get started on your project? I'd love to hear about it. Please be as specific as possible, the more specific you are, the easier it will be for me to help you.
+            </p>
+            
+            <form class="project-form">
+                
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="url">Current Website URL</label>
+                    <input type="text" id="url">
+                </div>
+                <div class="form-group">
+                    <label for="budget">Budget *</label>
+                    <input type="text" id="budget" required placeholder="$0,000">
+                </div>
+                
+                <div class="form-group">
+                    <label for="branding">Do you need help with branding?</label>
+                    <select id="branding">
+                        <option value="">- Select -</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="photos">Do you need help finding photos?</label>
+                    <select id="photos">
+                        <option value="">- Select -</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="copy">Do you need help with text copy?</label>
+                    <select id="copy">
+                        <option value="">- Select -</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="selling">Do you plan to sell anything through your website?</label>
+                    <select id="selling">
+                        <option value="">- Select -</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="description">If you could choose 3 words to describe your perfect website, what would they be? Alternatively, share examples with us of websites you like.</label>
+                    <textarea id="description"></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="feelings">What do you want your website visitors to feel when they visit your site?</label>
+                    <textarea id="feelings"></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="objective">Tell us the main objective of your website?</label>
+                    <textarea id="objective"></textarea>
+                    <span class="sub-label">E.g. to gather leads via a form, to answer customer's questions, for customers to download your latest brochure, for suppliers to be able to find product information, for customers to be able to buy products/signup for services?</span>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="client">Tell us who your ideal client is? Who are you hoping to attract with your website?</label>
+                    <textarea id="client"></textarea>
+                    <span class="sub-label">E.g. are you targeting businesses or individuals? Think about where they are geographically; are they in a specific industry or position? Are they male or female? How old are they?</span>
+                </div>
+                
+                <button type="submit" class="submit-button">SUBMIT YOUR REQUEST</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-top">
+            <p class="now-booking">NOW BOOKING</p>
+            <h2 class="footer-heading">Get started on your new website.</h2>
+            <a href="#" class="footer-button">BOOK YOUR PROJECT</a>
+        </div>
+        
+        <div class="footer-columns">
+            <div class="footer-col">
+                <h3 class="accent-heading">About</h3>
+                <p>
+                    PixelPerfect Design is a boutique studio specializing in 
+                    custom website solutions for creative professionals.
+                </p>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="accent-heading">More info</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Get Started</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Design process</a></li>
+                    <li><a href="#">Meet your designer</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3 class="accent-heading">Get started</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Contact me</a></li>
+                    <li><a href="#">Website support</a></li>
+                    <li><a href="#">Schedule a call</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col footer-logos">
+                <div class="logo-circle">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/logo-monogram-2021-V3-300x300.png" height="100px" width="210px">
+                </div>
+                <div class="logo-badge">
+                <img src="https://pixelperfectdesignstudio.com/wp-content/uploads/eco-friendly.png" height="35px" width="110px">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                Copyright © 2025 PixelPerfect Design Studio · <a href="#">Privacy Policy</a>.
+            </p>
+            <p>
+                PixelPerfect would like to acknowledge that we are on the traditional land of the Anishinaabeg people. <a href="#">View full Land Acknowledgement</a>.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

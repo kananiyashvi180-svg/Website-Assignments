@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganni New Arrivals</title>
+    
+
+    <style>
+        :root {
+            --primary-bg: #e3efd9;
+            --text-color: #000;
+            --navbar-height: 70px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            height: var(--navbar-height);
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .navbar-left ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar-left ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 400;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+
+        .navbar-left ul li a:hover {
+            color: #555;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--text-color);
+            padding-bottom: 2px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 14px;
+            padding: 0 5px;
+            width: 120px;
+        }
+
+        .navbar-right .icon {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .navbar-right .icon:hover {
+            opacity: 1;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 500px;
+            margin-top: var(--navbar-height);
+            background-color: var(--primary-bg);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            box-sizing: border-box;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .hero-model-image {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            object-position: center bottom;
+        }
+
+        .footer-section-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 20px 30px;
+            box-sizing: border-box;
+            background-color: transparent;
+            z-index: 999;
+        }
+
+        .logo-after-hero-section {
+            padding: 50px 30px;
+            background-color: var(--primary-bg);
+        }
+
+        .ganni-logo-large {
+            font-family: 'Oswald', sans-serif;
+            font-size: 96px;
+            font-weight: 700;
+            color: var(--text-color);
+            letter-spacing: -6px;
+            line-height: 0.8;
+        }
+
+        .new-arrivals-cta {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .new-arrivals-cta p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-color);
+            text-transform: uppercase;
+        }
+
+        .new-arrivals-cta a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 400;
+            border-bottom: 1px solid var(--text-color);
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+        }
+
+        .new-arrivals-cta a:hover {
+            border-color: transparent;
+        }
+
+        .ganni-logo-small {
+            margin-bottom: 15px;
+        }
+
+        .ganni-logo-small img {
+            width: 40px;
+            height: 40px;
+            display: block;
+        }
+
+        .product-grid-section {
+            padding: 80px 30px;
+            background-color: #fff;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #f0f0f0;
+            overflow: hidden;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .product-card-image {
+            position: relative;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 133.33%;
+            height: 0;
+        }
+
+        .product-card-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .wishlist-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+       
+        .product-card .wishlist-icon {
+            display: none;
+        }
+
+       
+
+
+        .product-info {
+            padding: 15px 0 0 0;
+            font-size: 14px;
+        }
+
+        .product-name {
+            font-weight: 700;
+            margin: 0 0 5px 0;
+        }
+
+        .product-price {
+            font-weight: 400;
+            margin: 0;
+            text-align: right;
+        }
+
+        .product-name-row,
+        .product-sub-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .product-sub-info span {
+            display: block;
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 2px;
+        }
+
+        .product-sub-info .new-label {
+            font-weight: 700;
+            color: #000;
+        }
+
+        .add-to-cart-button {
+            width: 100%;
+            padding: 12px 0;
+            margin-top: 10px;
+            border: 1px solid var(--text-color);
+            background-color: #fff;
+            color: var(--text-color);
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .add-to-cart-button:hover {
+            background-color: #f5f5f5;
+        }
+
+        .product-navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 5;
+        }
+
+        .product-navigation button {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .bags-section {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .bags-section-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .bags-text-overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: #000;
+        }
+
+        .bags-text-overlay h2 {
+            margin: 0 0 5px 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .bags-text-overlay a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+        }
+
+        .bags-text-overlay a:hover {
+            border-color: transparent;
+        }
+
+        .bag-grid-section {
+            padding: 80px 30px;
+            background-color: #fff;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .shoes-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 600px;
+            margin-top: 50px;
+        }
+
+        .shoes-item-left {
+            background-color: #f8f8f8;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .shoes-item-left img {
+            max-height: 90%;
+            max-width: 90%;
+            object-fit: contain;
+        }
+
+        .shoes-text-overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: #000;
+        }
+
+        .shoes-text-overlay h2 {
+            margin: 0 0 5px 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .shoes-text-overlay a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+        }
+
+        .shoes-text-overlay a:hover {
+            border-color: transparent;
+        }
+
+        .shoes-item-right {
+            background-color: var(--primary-bg);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .shoes-item-right img {
+            max-height: 95%;
+            max-width: 100%;
+            object-fit: contain;
+            object-position: center bottom;
+        }
+
+        .clothing-shoes-grid-section {
+            padding: 80px 30px;
+            background-color: #fff;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        /* ------------------------------------------------ */
+        /* --- FOOTER MODIFICATIONS START --- */
+        /* ------------------------------------------------ */
+        .site-footer {
+            /* Changed background from #000 to #fff */
+            background-color: #fff;
+            /* Changed text color from #fff to #000 */
+            color: #000;
+            padding: 60px 30px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr) 0.5fr;
+            gap: 40px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .footer-column h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-column ul li a {
+            /* Changed link color from #fff to #000 */
+            color: #000;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-column ul li a:hover {
+            /* Adjusted hover color for contrast on white background */
+            color: #555;
+        }
+
+        .footer-ganni-info {
+            grid-column: span 1;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .b-corp-logo {
+            margin-bottom: 15px;
+            align-self: flex-end;
+            width: 60px;
+            height: auto;
+            /* Removed filter: invert(1) to make black logo visible on white background */
+            filter: none;
+            opacity: 0.8;
+        }
+
+        .ganni-address p {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.4;
+            /* Changed text color from #ccc to a dark grey */
+            color: #555;
+        }
+
+        .footer-bottom {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 40px;
+            padding-top: 30px;
+            /* Changed border color from #333 to #ddd */
+            border-top: 1px solid #ddd;
+        }
+
+        .locale-selectors {
+            display: flex;
+            gap: 40px;
+        }
+
+        .locale-selector {
+            width: 200px;
+        }
+
+        .locale-selector label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 8px;
+            /* Changed label color from #ccc to a dark grey */
+            color: #555;
+        }
+
+        .locale-selector select {
+            width: 100%;
+            /* Changed background color from #000 to #fff */
+            background-color: #fff;
+            /* Changed text color from #fff to #000 */
+            color: #000;
+            border: none;
+            /* Changed border color from #fff to #000 */
+            border-bottom: 1px solid #000;
+            padding: 5px 0;
+            font-size: 14px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .locale-selector p {
+            font-size: 11px;
+            /* Changed text color from #777 to a dark grey */
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons img {
+            width: 20px;
+            height: 20px;
+            /* Removed filter: invert(1) to make social icons black on white background */
+            filter: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .social-icons img:hover {
+            opacity: 1;
+        }
+        /* ------------------------------------------------ */
+        /* --- FOOTER MODIFICATIONS END --- */
+        /* ------------------------------------------------ */
+
+
+        @media (max-width: 1024px) {
+            .site-footer {
+                grid-template-columns: repeat(3, 1fr) 1.2fr;
+                gap: 20px;
+                padding: 40px 20px;
+            }
+
+            .footer-ganni-info {
+                grid-column: span 1;
+                text-align: left;
+                align-self: flex-start;
+            }
+
+            .b-corp-logo {
+                align-self: flex-start;
+            }
+
+            .ganni-address {
+                margin-top: 20px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+
+            .locale-selectors {
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+            }
+
+            .locale-selector {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .social-icons {
+                margin-top: 30px;
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .navbar-left {
+                display: none;
+            }
+
+            .navbar-right {
+                width: 100%;
+                justify-content: flex-end;
+                gap: 12px;
+            }
+
+            .search-box {
+                display: none;
+            }
+
+            .ganni-logo-large {
+                font-size: 48px;
+                letter-spacing: -2px;
+            }
+
+            .footer-section-hero-overlay {
+                padding: 15px 15px;
+            }
+
+            .new-arrivals-cta {
+                display: none;
+            }
+
+            .hero-section {
+                height: 400px;
+                margin-top: var(--navbar-height);
+            }
+
+            .hero-model-image {
+                max-height: 100%;
+            }
+
+            .logo-after-hero-section {
+                padding: 30px 15px;
+            }
+
+            .product-grid-section,
+            .bag-grid-section,
+            .clothing-shoes-grid-section {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 20px 15px;
+                gap: 10px;
+            }
+
+            .product-info {
+                padding: 10px 0 0 0;
+            }
+
+            .product-navigation {
+                display: none;
+            }
+
+            .bags-section {
+                height: 400px;
+                margin-top: 30px;
+            }
+
+            .bags-text-overlay {
+                bottom: 20px;
+                left: 20px;
+            }
+
+            .bags-text-overlay h2 {
+                font-size: 20px;
+            }
+
+            .bags-text-overlay a {
+                font-size: 14px;
+            }
+
+            .shoes-section {
+                grid-template-columns: 1fr;
+                height: auto;
+                margin-top: 30px;
+            }
+
+            .shoes-item-left,
+            .shoes-item-right {
+                height: 400px;
+                padding-bottom: 0;
+            }
+
+            .site-footer {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 30px 15px;
+                gap: 15px;
+            }
+
+            .footer-ganni-info {
+                grid-column: span 2;
+                order: 1;
+                text-align: left;
+            }
+
+            .b-corp-logo {
+                align-self: flex-start;
+                margin-top: 15px;
+            }
+
+            .footer-column {
+                margin-bottom: 20px;
+            }
+
+            .footer-bottom {
+                margin-top: 20px;
+                padding-top: 15px;
+            }
+
+            .locale-selectors {
+                gap: 15px;
+            }
+
+            .social-icons {
+                margin-top: 20px;
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-footer {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-column {
+                grid-column: 1;
+            }
+
+            .footer-ganni-info {
+                grid-column: 1;
+            }
+
+            .locale-selectors {
+                align-items: flex-start;
+            }
+
+            .social-icons {
+                width: 100%;
+                justify-content: center;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <nav>
+                <ul>
+                    <li><a href="newarrivals.html">New Arrivals</a></li>
+                    <li><a href="bags.html">Bags</a></li>
+                    <li><a href="#">Ready-to-Wear</a></li>
+                    <li><a href="#">Shoes</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Gifts</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="navbar-right">
+            <div class="search-box">
+                <img src="https://img.icons8.com/ios-glyphs/18/000000/search--v1.png" alt="Search icon" class="icon">
+                <input type="text" placeholder="Search">
+            </div>
+            <img src="https://img.icons8.com/ios-glyphs/18/000000/hearts.png" alt="Wishlist icon" class="icon">
+            <img src="https://img.icons8.com/ios-glyphs/18/000000/marker.png" alt="Location icon" class="icon">
+            <img src="https://img.icons8.com/ios-glyphs/18/000000/user--v1.png" alt="Account icon" class="icon" <a href="account.html"> </a>
+            <img src="https://img.icons8.com/ios-glyphs/18/000000/shopping-bag--v1.png" alt="Bag icon" class="icon">
+            <img src="https://img.icons8.com/ios-glyphs/18/000000/multiply.png" alt="Close icon"
+                class="icon close-icon">
+        </div>
+    </header>
+
+    <main class="hero-section">
+        <div class="hero-image-container">
+            <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Library-Sites-ganni-shared/default/dw7fd95db8/images/homepage/HP-WEEK42.jpg?sw=1600"
+                alt="Model wearing Ganni new arrival" class="hero-model-image">
+        </div>
+
+        <footer class="footer-section-hero-overlay">
+
+            <div class="new-arrivals-cta">
+                <p>New Arrivals</p>
+                <a href="#">Discover now &rarr;</a>
+            </div>
+
+            <div class="ganni-logo-small">
+                <img src="https://placehold.co/40x40/000000/FFFFFF?text=G" alt="Ganni small logo">
+            </div>
+        </footer>
+    </main>
+
+    <section class="logo-after-hero-section">
+        <div class="ganni-logo-large">GANNI</div>
+    </section>
+
+    <section class="product-grid-section">
+
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw79158726/images/images/packshots/A6946_5894_099_1.jpg?sh=1000"
+                    alt="Black Mini Box Bag">
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Black Mini Box Bag</p>
+                    <p class="product-price">₹ 33,100.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>16 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw944d16ed/images/images/model/W1013_7088_861_1.jpg?sh=1000"
+                    alt="Green Tri-Layer Parka Coat">
+                <div class="product-navigation">
+                    <button>&lt;</button>
+                    <button>&gt;</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Green Tri-Layer Parka Coat</p>
+                    <p class="product-price">₹ 65,000.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>32 34 36 38 40 42 44</span>
+                </div>
+                <div class="product-sub-info">
+                    <span>2 colour(s)</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw920bd004/images/images/packshots/W1010_7055_21K_1.jpg?sh=1000"
+                    alt="Tapestry Twill Trousers">
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Tapestry Twill Trousers</p>
+                    <p class="product-price">₹ 29,700.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>4 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dwbcc799ce/images/images/packshots/K2631_2700_436_1.jpg?sh=1000"
+                    alt="Burgundy Wool Mix Jumper">
+                <div class="product-navigation">
+                    <button>&lt;</button>
+                    <button>&gt;</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Burgundy Wool Mix Jumper</p>
+
+                    <p class="product-price">₹ 30,400.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>5 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="bags-section">
+        <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Library-Sites-ganni-shared/default/dwded1c0d9/images/homepage/WK35HP-2.jpg?sw=1600"
+            alt="Red Bag" class="bags-section-image">
+        <div class="bags-text-overlay">
+            <h2>Bags</h2>
+            <a href="#">Explore now &rarr;</a>
+        </div>
+    </section>
+
+    <section class="bag-grid-section product-grid-section">
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw2fefe81e/images/images/packshots/A7077_5971_818_1.jpg?sh=1000"
+                    alt="Red Small Kat Bag">
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Red Small Kat Bag</p>
+                    <p class="product-price">₹ 58,000.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>5 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw541c52c7/images/images/packshots/A6978_686_1.jpg?sh=1000"
+                    alt="Light Grey Mini Hobo Bag">
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Light Grey Mini Hobo Bag</p>
+                    <p class="product-price">₹ 37,300.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>6 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw2471469c/images/images/packshots/A7102_979_1.jpg?sh=1000"
+                    alt="Brown Mini Hobo Bag">
+                <div class="product-navigation">
+                    <button>&lt;</button>
+                    <button>&gt;</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Brown Mini Hobo Bag</p>
+                    <p class="product-price">₹ 37,300.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>6 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw03de16d9/images/images/packshots/A6976_099_1.jpg?sh=1000"
+                    alt="Black Mini Hobo Bag">
+                <div class="product-navigation">
+                    <button>&lt;</button>
+                    <button>&gt;</button>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Black Mini Hobo Bag</p>
+                    <p class="product-price">₹ 37,300.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>6 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="shoes-section">
+        <div class="shoes-item-left">
+            <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Library-Sites-ganni-shared/default/dwbf3c5424/images/homepage/EMEA-WK42.jpg?sw=1600"
+                alt="Black Boots">
+            <div class="shoes-text-overlay">
+                <h2>Shoes</h2>
+                <a href="#">Explore now &rarr;</a>
+            </div>
+        </div>
+        <div class="shoes-item-right">
+            <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Library-Sites-ganni-shared/default/dw7fab0a61/images/homepage/WK41-HP-02.jpg?sw=1600"
+                alt="Model in Black Dress and Boots">
+        </div>
+    </section>
+
+    <section class="clothing-shoes-grid-section product-grid-section">
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dwfaf842eb/images/images/packshots/S2575_4900_099_1.jpg?sh=1000"
+                    alt="Kat High Boots in Dark Grey">
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Kat High Boots in Dark Grey</p>
+                    <p class="product-price">₹ 67,000.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>2 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw143a5eb2/images/images/packshots/S3246_5971_911_1.jpg?sh=1000"
+                    alt="Cleated High Chelsea Boots in Black">
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Cleated High Chelsea Boots in Black</p>
+                    <p class="product-price">₹ 46,900.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>1 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw2c55f451/images/images/packshots/W0995_6783_099_1.jpg?sh=1000">
+                    >
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Black Stripe circle dress</p>
+                    <p class="product-price">₹ 66,900.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>1 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-card-image">
+                <img src="https://www.ganni.com/dw/image/v2/AAWT_PRD/on/demandware.static/-/Sites-ganni-master-catalogue/default/dw33871c54/images/images/packshots/W0994_7013_205_1.jpg?sh=1000"
+                    >
+            </div>
+            <div class="product-info">
+                <div class="product-name-row">
+                    <p class="product-name">Grey Stripe Collar Dress</p>
+                    <p class="product-price">₹ 46,900.00</p>
+                </div>
+                <div class="product-sub-info">
+                    <span>2 colour(s)</span>
+                </div>
+                <div class="product-sub-info">
+                    <span class="new-label">New</span>
+                </div>
+                <button class="add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-column">
+            <h3>Customer Service</h3>
+            <ul>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Shipping</a></li>
+                <li><a href="#">Returns & Exchanges</a></li>
+                <li><a href="#">Size Guide</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>About Ganni</h3>
+            <ul>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Responsibility</a></li>
+                <li><a href="#">Ganni Postmodern</a></li>
+                <li><a href="#">Store Locator</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Legal</h3>
+            <ul>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Cookie Policy</a></li>
+                <li><a href="#">Accessibility</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Newsletter</h3>
+            <ul>
+                <li><a href="#">Sign up and get 10% off</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="#"><img src="https://img.icons8.com/ios-glyphs/20/000000/instagram-new.png"
+                        alt="Instagram"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-glyphs/20/000000/facebook-new.png"
+                        alt="Facebook"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-glyphs/20/000000/twitter--v1.png" alt="Twitter"></a>
+                <a href="#"><img src="https://img.icons8.com/ios-glyphs/20/000000/pinterest.png" alt="Pinterest"></a>
+            </div>
+        </div>
+        <div class="footer-ganni-info">
+            <img src="https://www.ganni.com/on/demandware.static/-/Library-Sites-ganni-shared/default/dw9d7009b8/redesign/B-Corp-Logo-Black-RGB-kopi.svg"
+                alt="B Corp Logo" class="b-corp-logo">
+            <div class="ganni-address">
+                <p>&copy; 2025 Ganni</p>
+                <p>Niels Hemmingsens Gade 3</p>
+                <p>1153 Copenhagen K, Denmark</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="locale-selectors">
+                <div class="locale-selector">
+                    <label for="country">Shipping To</label>
+                    <select id="country">
+                        <option value="in">India</option>
+                        <option value="us">United States</option>
+                        <option value="dk">Denmark</option>
+                    </select>
+                    <p>Changing country may affect pricing.</p>
+                </div>
+                <div class="locale-selector">
+                    <label for="currency">Currency</label>
+                    <select id="currency">
+                        <option value="inr">INR (₹)</option>
+                        <option value="usd">USD ($)</option>
+                        <option value="eur">EUR (€)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
